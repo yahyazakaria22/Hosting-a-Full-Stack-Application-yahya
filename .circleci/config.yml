@@ -15,7 +15,7 @@ jobs:
       - node/install:
           node-version: "14.15"
       - eb/setup
-      - aws-cli/setup    
+      - aws-cli/setup
       - checkout
       # Use root level package.json to install dependencies in the frontend app
       - run:
@@ -42,17 +42,7 @@ jobs:
           name: API Build
           command: |
             npm run api:install
-  # deploy step will run only after manual approval
-      - run:
-          name: Deploy Front-End
-          command: |
-            npm run frontend:deploy
-      # TODO: Build the backend API
-      - run:
-          name: Deploy API
-          command: |
-            npm run api:deploy
-
+      # deploy step will run only after manual approval
   deploy:
     docker:
       - image: "cimg/base:stable"
