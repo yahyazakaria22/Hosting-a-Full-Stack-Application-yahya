@@ -48,8 +48,6 @@ jobs:
     steps:
       - node/install:
           node-version: "14.15"
-      - eb/setup
-      - aws-cli/setup
       - checkout
       # TODO: Deploy the frontend app
       - run:
