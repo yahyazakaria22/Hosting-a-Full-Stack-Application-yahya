@@ -9,3 +9,7 @@ export AWS_REGION=us-east-1
 export AWS_PROFILE=default
 export JWT_SECRET=yahya
 export URL=http://localhost:8100
+export PORT_DB=5432
+export PORT=8080 
+export env=""
+
