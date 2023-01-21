@@ -1,0 +1,15 @@
+Build&deploy Requirement:
+  1- Node.js 14.15.1 (LTS), or more recent
+  2- npm 6.14.8 (LTS), or more recent
+
+AWS Requirement:
+  1-RDS   
+  2-S3
+  3-Elastic Beanstalk
+  4-IAM user with config as AdministratorAccess
+  5-CLI
+  
+CircleCi Requirement:
+  1-Github repo
+  2-config.yml 
+  
