@@ -1,6 +1,6 @@
 Front-End Deployment Script:
- 1-S3 Bucket-Name:yahyazakaria-udagram
- 2-S3 URL:http://yahyazakaria-udagram.s3-website-us-east-1.amazonaws.com
+ aws s3 cp --recursive --acl public-read ./www s3://yahyazakaria-udagram/
+ aws s3 cp --acl public-read --cache-control="max-age=0, no-cache, no-store, must-revalidate" ./www/index.html s3://yahyazakaria-udagram/
  
 Back-End Deployment Script:
  eb init udagram-api --region us-east-1  --platform node.js
@@ -10,3 +10,60 @@ Back-End Deployment Script:
  eb deploy || eb deploy udagram-api-env
  
 Pipline Jops:
+  jobs:
+  build:
+    docker:
+      # the base image can run most needed actions with orbs
+      - image: "cimg/node:14.15"
+    steps:
+      # install node and checkout code
+      - node/install:
+          node-version: "14.15"
+      - eb/setup
+      - aws-cli/setup
+      - checkout
+      # Use root level package.json to install dependencies in the frontend app
+      - run:
+          name: Install Front-End Dependencies
+          command: |
+            npm run frontend:install
+      # TODO: Install dependencies in the the backend API
+      - run:
+          name: Install API Dependencies
+          command: |
+            npm run api:install
+      # TODO: Lint the frontend
+      - run:
+          name: Front-End Lint
+          command: |
+            npm run frontend:lint
+      # TODO: Build the frontend app
+      - run:
+          name: Front-End Build
+          command: |
+            npm run frontend:build
+      # TODO: Build the backend API
+      - run:
+          name: API Build
+          command: |
+            npm run api:install
+  deploy:
+    docker:
+      - image: "cimg/base:stable"
+      # more setup needed for aws, node, elastic beanstalk
+    steps:
+      - node/install:
+          node-version: "14.15"
+      - eb/setup
+      - aws-cli/setup
+      - checkout
+      # TODO: Deploy the frontend app
+      - run:
+          name: Deploy Front-End
+          command: |
+            npm run frontend:deploy
+      # TODO: Build the backend API
+      - run:
+          name: Deploy API
+          command: |
+            npm run api:deploy
