@@ -1,1 +1,12 @@
 Front-End Environment:
+ 1-S3 Bucket-Name:yahyazakaria-udagram
+ 2-S3 URL:http://yahyazakaria-udagram.s3-website-us-east-1.amazonaws.com
+ 
+Back-End Environment:
+ 1-DB endpoint:database-1.cqnanzcuccgx.us-east-1.rds.amazonaws.com
+ 2-Application Name:udagram-api
+ 3-Environment Name:udagram-api-env
+ 4-Elastic Beanstalk URL:http://udagram-api-env.eba-dq75m83p.us-east-1.elasticbeanstalk.com
+ 
+Deployment Environment:
+ 1-Github Repo:https://github.com/yahyazakaria22/Hosting-a-Full-Stack-Application-yahya.git
